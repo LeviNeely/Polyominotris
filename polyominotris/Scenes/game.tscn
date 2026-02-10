@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5dimftcyjkuf"]
+
+[ext_resource type="Script" uid="uid://debps2rdvem28" path="res://Scripts/game.gd" id="1_3dryh"]
+[ext_resource type="Texture2D" uid="uid://debqvebbpjbu1" path="res://Assets/Art/PolyominotrisBlockOutlineWhite.png" id="1_ebmjs"]
+[ext_resource type="Texture2D" uid="uid://cqy3ekyfofyco" path="res://Assets/Art/Logo.png" id="1_qxrlw"]
+[ext_resource type="Shader" uid="uid://bndxse2se08f6" path="res://Assets/Shaders/rainbow.gdshader" id="1_wrm1d"]
+
+[sub_resource type="Theme" id="Theme_qxrlw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qxrlw"]
+shader = ExtResource("1_wrm1d")
+
+[node name="Game" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3dryh")
+
+[node name="GameSections" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameSections"]
+custom_minimum_size = Vector2(500, 1000)
+layout_mode = 2
+theme = SubResource("Theme_qxrlw")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GUI" type="VBoxContainer" parent="GameSections/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="GameSections/MarginContainer/GUI"]
+material = SubResource("ShaderMaterial_qxrlw")
+layout_mode = 2
+texture = ExtResource("1_qxrlw")
+
+[node name="Stats" type="GridContainer" parent="GameSections/MarginContainer/GUI"]
+layout_mode = 2
+theme_override_constants/h_separation = 50
+columns = 2
+
+[node name="HighScore" type="Label" parent="GameSections/MarginContainer/GUI/Stats"]
+layout_mode = 2
+text = "High Score:"
+
+[node name="HighScoreValue" type="Label" parent="GameSections/MarginContainer/GUI/Stats"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="TilesRemaining" type="Label" parent="GameSections/MarginContainer/GUI/Stats"]
+layout_mode = 2
+text = "Tiles Remaining: "
+
+[node name="TilesRemainingValue" type="Label" parent="GameSections/MarginContainer/GUI/Stats"]
+layout_mode = 2
+text = "400"
+horizontal_alignment = 2
+
+[node name="LinesCleared" type="Label" parent="GameSections/MarginContainer/GUI/Stats"]
+layout_mode = 2
+text = "Lines Cleared: "
+
+[node name="LinesClearedValue" type="Label" parent="GameSections/MarginContainer/GUI/Stats"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="NextPolyomino" type="GridContainer" parent="GameSections/MarginContainer/GUI"]
+layout_mode = 2
+columns = 5
+
+[node name="PolyominoBlock" type="TextureRect" parent="GameSections/MarginContainer/GUI/NextPolyomino"]
+layout_mode = 2
+texture = ExtResource("1_ebmjs")
+
+[node name="NewClearGame" type="Button" parent="GameSections/MarginContainer/GUI"]
+layout_mode = 2
+focus_mode = 0
+text = "New Clear Game"
+
+[node name="NewEndlessGame" type="Button" parent="GameSections/MarginContainer/GUI"]
+layout_mode = 2
+focus_mode = 0
+text = "New Endless Game"
+
+[node name="PauseGame" type="Button" parent="GameSections/MarginContainer/GUI"]
+layout_mode = 2
+focus_mode = 0
+text = "Pause Game"
+
+[node name="QuitGame" type="Button" parent="GameSections/MarginContainer/GUI"]
+layout_mode = 2
+focus_mode = 0
+text = "Quit Game"
+
+[node name="MarginContainer2" type="MarginContainer" parent="GameSections"]
+custom_minimum_size = Vector2(1000, 1000)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TheGrid" type="GridContainer" parent="GameSections/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 20
+
+[node name="PolyominoBlock" type="TextureRect" parent="GameSections/MarginContainer2/TheGrid"]
+layout_mode = 2
+texture = ExtResource("1_ebmjs")
